@@ -1,0 +1,18 @@
+version: "2.2"
+
+services:
+  desktop:
+    build: Desktop/
+    ports:
+      - "5901:5901"
+      - "6901:6901"
+  server:
+    build: Server/
+#    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    ports:
+      - "2200:22"
+    volumes:
+      - ./Server/home/:/home/user/
+  flask-server:
+    build: FlaskServer/

@@ -1,0 +1,13 @@
+Al momento funziona quasi tutto. Purtroppo gli IP cambiano e con riesco
+a controllarli, quindi le operazioni si fanno sugli hostname, desktop,
+server e flask-servero.
+
+Sono riuscito ad avere il server funzionante con un utente non root.
+Son riuscito a far partire il server ssh, quindi possibile accedere dal
+desktop con ssh. Il server ha la home dell'utente persistente.
+
+Il desktop funziona come root, che ha i suoi vantaggi. La home è
+persistente.
+
+Devo ancora riprovare flask, che funzionava.
+
