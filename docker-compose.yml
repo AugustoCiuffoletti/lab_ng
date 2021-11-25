@@ -32,11 +32,13 @@ services:
       - ./LampServer/mysql:/var/lib/mysql
   flask-server:
     build: FlaskServer/
+#    stdin_open: true # docker run -i
+    tty: true        # docker run -t
     networks:
       local:
         ipv4_address: 172.16.1.5
-    volumes:
-      -  ./FlaskServer/lab/:/app/
+#    volumes:
+#      -  ./FlaskServer/home:/home/user/
 networks:
   local:
     driver: bridge
