@@ -13,18 +13,30 @@ services:
     build: Server/
 #    stdin_open: true # docker run -i
     tty: true        # docker run -t
-    ports:
-      - "2200:22"
+#    ports:
+#      - "2200:22"
     networks:
       local:
         ipv4_address: 172.16.1.3
     volumes:
       - ./Server/home/:/home/user/
+  lamp-server:
+    build: LampServer/
+#    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    networks:
+      local:
+        ipv4_address: 172.16.1.4
+    volumes:
+      - ./LampServer/home:/home/user
+      - ./LampServer/mysql:/var/lib/mysql
   flask-server:
     build: FlaskServer/
     networks:
       local:
-        ipv4_address: 172.16.1.4
+        ipv4_address: 172.16.1.5
+    volumes:
+      -  ./FlaskServer/lab/:/app/
 networks:
   local:
     driver: bridge
