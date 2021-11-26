@@ -7,40 +7,24 @@ services:
       - "5901:5901"   # vnc
       - "6901:6901"   # noVnc
     networks:
-      local:
+      locale:
         ipv4_address: 172.16.1.2
   server:
     build: Server/
-#    stdin_open: true # docker run -i
     tty: true        # docker run -t
-#    ports:
-#      - "2200:22"
     networks:
-      local:
+      locale:
         ipv4_address: 172.16.1.3
-    volumes:
-      - ./Server/home/:/home/user/
   lamp-server:
     build: LampServer/
-#    stdin_open: true # docker run -i
     tty: true        # docker run -t
     networks:
-      local:
+      locale:
         ipv4_address: 172.16.1.4
-    volumes:
-      - ./LampServer/home:/home/user
-      - ./LampServer/mysql:/var/lib/mysql
-  flask-server:
-    build: FlaskServer/
-#    stdin_open: true # docker run -i
-    tty: true        # docker run -t
-    networks:
-      local:
-        ipv4_address: 172.16.1.5
 #    volumes:
-#      -  ./FlaskServer/home:/home/user/
+#      - ./LampServer/mysql:/var/lib/mysql
 networks:
-  local:
+  locale:
     driver: bridge
     ipam:
       config:
