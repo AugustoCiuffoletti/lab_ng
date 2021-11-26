@@ -1,4 +1,4 @@
-# lab_ng
+# Guida al prossimo laboratorio
 
 Il laboratorio è composto da tre macchine:
 
@@ -13,9 +13,7 @@ da lanciare nella directory creata con l'operazione di git clone:
 
 La prima volta che il comando viene eseguito vengono costruite le immagini per i docker, e il comando impiega una decina di minuti per terminare. Le volte successive il comando termina pochi secondi.
 
-L'accesso al laboratorio è tramite il docker con l'interfaccia grafica.
-Questo è accessibile tramite il browser del PC che ospita i docker
-all'indirizzo localhost:6901.
+L'accesso al laboratorio è tramite il docker con l'interfaccia grafica. Questo è accessibile tramite il browser del PC che ospita i docker all'indirizzo localhost:6901. La password da utilizzare per l'accesso è "headless".
 
 Dall'interfaccia grafica si accede alle altre due macchine aprendo
 un terminale e utilizzando il comando ssh. Per la macchina server:
@@ -26,3 +24,12 @@ e per la lamp-server:
 
     $ ssh user@lamp-server
 
+In sospeso:
+
+-) gli esercizi con ssh-copy-id non funzionano, bisogna copiare la chiave con scp e metterla  aposto (istruttivo)
+-) i makefile di flask e webserver sono da aggiustare: flask non ha un environment, webserver usa la directory /app
+-) da provare mysql, dal localhost si accede root con password vuota
+
+In futuro:
+-) rifare il desktop con utente user
+-) fare dei banner esplicativi, reintrodurre conky sul desktop, client mysql sul desktop
