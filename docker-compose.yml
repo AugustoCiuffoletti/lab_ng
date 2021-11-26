@@ -21,8 +21,6 @@ services:
     networks:
       locale:
         ipv4_address: 172.16.1.4
-#    volumes:
-#      - ./LampServer/mysql:/var/lib/mysql
 networks:
   locale:
     driver: bridge
