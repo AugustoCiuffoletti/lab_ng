@@ -27,17 +27,12 @@ e per la lamp-server:
 
 I repo degli esercizi sono diversi da quelli attualmente indicati sui lucidi: sono disponibili con prefisso **https://github.com/AugustoCiuffoletti/** a cui aggiungere il nome del repository (ad esempio https://github.com/AugustoCiuffoletti/stella).
 
-In sospeso:
+Note:
 
--) gli esercizi con ssh-copy-id non funzionano, bisogna copiare la chiave con scp
+-) gli esercizi per la copiatura delle chiavi funzionanon tanto con nc (anno 2021) quanto con ssh-copy-id (anni precedenti)
 
-     $ ssh-keygen
-     $ scp /root/.ssh/id_rsa.pub user@server:.ssh/authorized_hosts
-
-Funziona anche con ssh-copy-i ma creando la directory /home/headless/.ssh e poi ssh-copy-id -i /root/.ssh/id_rsa user@server (credo).
-
--) da provare mysql, dal localhost si accede root con password vuota
+-) il database mysql, su lamp-server localhost è accessibile solo da root con password vuota, quindi è adatto alla realizzazione di un server LAMP con db MySQL
 
 In futuro:
--) rifare il desktop con utente user
+
 -) fare dei banner esplicativi, reintrodurre conky sul desktop, client mysql sul desktop
