@@ -1,34 +1,33 @@
 FROM ubuntu:focal
 
-RUN apt-get -qq update \
-    && apt-get -qq --no-install-recommends install nano \
-    && apt-get -qq --no-install-recommends install openssh-server \
-    && apt-get -qq --no-install-recommends install sudo
+RUN apt-get update
+RUN apt-get --quiet=2 --yes install apt-utils
+RUN yes | unminimize
+RUN apt-get --quiet=2 --yes upgrade
+
+RUN apt-get --quiet=2 --yes install nano
+RUN apt-get --quiet=2 --yes install bash-completion
+RUN apt-get --quiet=2 --yes install openssh-server
+RUN apt-get --quiet=2 --yes install sudo
 
 # Setup the default user.
 RUN useradd -rm -d /home/user -s /bin/bash -g root -G sudo user
 RUN echo 'user:user' | chpasswd
-
 RUN ssh-keygen -A -v
 
 # Tools per esercizi networking
-RUN apt-get -qq update \
-   && apt-get -qq --no-install-recommends install netcat \
-   && apt-get -qq --no-install-recommends install iproute2 \
-   && apt-get -qq --no-install-recommends install net-tools \
-   && apt-get -qq --no-install-recommends install iputils-ping \
-   && apt-get -qq --no-install-recommends install traceroute \
-   && apt-get -qq --no-install-recommends install less \
-   && apt-get -qq --no-install-recommends install git \
-   && apt-get -qq --no-install-recommends install make
+RUN apt-get --quiet=2 --yes install netcat iproute2 net-tools dnsutils iputils-ping traceroute nmap
+# Installazione strumenti di sviluppo
+RUN apt-get --quiet=2 --yes install make git
+RUN apt-get --quiet=2 --yes install openssh-client openssh-server
 
 # Tools per esercizi Flask
 RUN apt-get -qq update \
     && apt-get -qq --no-install-recommends install pip
 
 # Pulizia
-RUN apt-get -qq clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get -qq clean
+#    && rm -rf /var/lib/apt/lists/*
 
 # Installazione flask
 COPY requirements.txt .
