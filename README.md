@@ -29,7 +29,7 @@ E' un'applicazione a linea di comando (quindi si usa da emulatore di terminale) 
 
 Dopo averlo installato potete subito provarlo per scaricare in locale il *repository* git che contiene queste istruzioni (e il materiale collegato). Per questo aprite un terminale virtuale e spostatevi in una directory di lavoro. Poi date il comando:
 
-    $ git clone https://github.com/AugustoCiuffoletti/lab-ng/
+    $ git clone https://github.com/AugustoCiuffoletti/lab_ng/
 
 > **Attenzione**: il comando da eseguire **non** comprende il $ iniziale, che viene inserito solo per indicare che si tratta di un comando da terminale da un account utente.
 
@@ -53,19 +53,25 @@ Al termine, accedete tramite il browser alla URL `http://localhost:6080`. Dopo p
 Avete terminato il passo preliminare alla creazione del laboratorio.
 
 ## Costruzione delle due macchine del laboratorio e connessione della rete.
-    
-Dopo aver installato le due applicazioni e clonato il repository, spostatevi nella directory che contiene il codice per la costruzione del laboratorio e digitate il comando per la costruzione del laboratorio.
 
-   $ cd lab-ng
-   $ docker compose up -d
+Spostatevi nella direcctory dove avete clonato il repository lab_ng. Quindi:
+
+    $ cd ..
+    $ cd lab_ng
+    $ docker compose up -d
 
 La costruzione del laboratorio è laboriosa e può impiegare molto tempo. Un PC di discreta potenza impiega circa mezz'ora. Al termine dovrebbero comparire sul terminale le seguenti righe:
     
     [+] Running 4/4
      ⠿ Network lab_ng_locale           Created                                 0.3s
-     ⠿ Container lab_ng-lamp-server-1  Sta...                                 15.5s
      ⠿ Container lab_ng-server-1       Started                                12.5s
      ⠿ Container lab_ng-desktop-1      Started                                14.9s
+
+Provate nuovamente ad accedere alla macchina virtuale dal browser, aprite un terminale e digitate il comando:
+
+    $ ping 172.16.1.3
+
+Se compare una elenco di righe, una al secondo. L'installazione ha avuto successo.
 
 Il laboratorio è così disponibile.
 
