@@ -37,6 +37,11 @@ Il contenuto del repository verrà collocato in una nuova directory `lab-ng`. Or
 
 ## Costruzione del laboratorio
 
+Per costruire il laboratorio è necessario prima procedere alla costruzione di due immagini specifiche per la vostra architettura. Scaricate quindi, sempre con git nella directory che avete prediscposto per la creazione del laboratorio, i due repository seguenti:
+
+* https://github.com/fcwu/docker-ubuntu-vnc-desktop
+* 
+
 Dopo aver installato le due applicazioni e clonato il repository, spostatevi nella directory che contiene il codice per la costruzione del laboratorio e digitate il comando per la costruzione del laboratorio.
 
    $ cd lab-ng

@@ -22,12 +22,6 @@ services:
     networks:
       locale:
         ipv4_address: 172.16.1.3
-  lamp-server:
-    build: LampServer/
-    tty: true        # docker run -t
-    networks:
-      locale:
-        ipv4_address: 172.16.1.4
 networks:
   locale:
     driver: bridge

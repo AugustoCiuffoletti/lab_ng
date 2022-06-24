@@ -16,7 +16,4 @@ RUN apt-get --yes install netcat iproute2 net-tools dnsutils iputils-ping tracer
 # Installazione strumenti di sviluppo
 RUN apt-get --yes install make git
 RUN apt-get --yes install openssh-client openssh-server
-
-
-CMD /etc/init.d/ssh start 
-#   && echo "headless" | sudo -S apt-get -qq --no-install-recommends install netcat iproute2 net-tools dnsutils iputils-ping traceroute less git make nmap wireshark packeth firefox openssh-client
+# Ma non riesco a far partire il demone sshd 
