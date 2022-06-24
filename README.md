@@ -35,13 +35,25 @@ Dopo averlo installato potete subito provarlo per scaricare in locale il *reposi
 
 Il contenuto del repository verrà collocato in una nuova directory `lab-ng`. Ora potete procedere alla costruzione del laboratorio virtuale.
 
-## Costruzione del laboratorio
+## Costruzione dell'immagine della macchina virtuale con interfaccia grafica
 
-Per costruire il laboratorio è necessario prima procedere alla costruzione di due immagini specifiche per la vostra architettura. Scaricate quindi, sempre con git nella directory che avete prediscposto per la creazione del laboratorio, i due repository seguenti:
+Per costruire il laboratorio è necessario prima procedere alla costruzione di una immagini specifica per la vostra architettura. Scaricate quindi, sempre con git nella directory che avete predisposto per la creazione del laboratorio, il repository seguenti:
 
-* https://github.com/fcwu/docker-ubuntu-vnc-desktop
-* 
+    $ git clone https://github.com/fcwu/docker-ubuntu-vnc-desktop
 
+Quindi entrate nella directory `docker-ubuntu-vnc-desktop` ed eseguite il comando `make run`. Cioè:
+
+    $ cd docker-ubuntu-vnc-desktop
+    $ make run
+    
+Il comando richiede qualche decina di minuti per completare, potete trovare altro da fare.
+
+Al termine, accedete tramite il browser alla URL `http://localhost:6080`. Dopo poco dovrebbe comparire il desktop della macchina virtuale. Dovreste essere in grado di aprire un terminale e digitare qualche comando. L'utente default si chiama user, con password user.
+
+Avete terminato il passo preliminare alla creazione del laboratorio.
+
+## Costruzione delle due macchine del laboratorio e connessione della rete.
+    
 Dopo aver installato le due applicazioni e clonato il repository, spostatevi nella directory che contiene il codice per la costruzione del laboratorio e digitate il comando per la costruzione del laboratorio.
 
    $ cd lab-ng
