@@ -37,18 +37,28 @@ Il contenuto del repository verrà collocato in una nuova directory `lab-ng`. Or
 
 ## Costruzione dell'immagine della macchina virtuale con interfaccia grafica
 
-Per costruire il laboratorio è necessario prima procedere alla costruzione di una immagini specifica per la vostra architettura. Scaricate quindi, sempre con git nella directory che avete predisposto per la creazione del laboratorio, il repository seguenti:
+Per costruire il laboratorio è necessario prima procedere alla costruzione di una immagini specifica per la vostra architettura. Il software per la sua costruzione è in repository che dovrete scaricare prima di procedere alla costruzione dell'immagine.
+
+I comandi per realizzare quanto sopra sono riportati sotto. Potete eseguirli nella stessa directory da cui avete eseguito il comando git per l'operazione di clone precedente.
+
+Nel terzo comando, al posto della stringa `<arch>` dovete sostituire una stringa indicativa del vostro sistema:
+
+* amd64: per sistemi Linux, Windows e MacOS con processore AMD
+* arm64: per i nuovi sistemi Mac OS con processore ARM
+
+Prestate attenzione al '.' finale del terxzo comando, che va indicato.
 
     $ git clone https://github.com/fcwu/docker-ubuntu-vnc-desktop
-
-Quindi entrate nella directory `docker-ubuntu-vnc-desktop` ed eseguite il comando `make run`. Cioè:
-
     $ cd docker-ubuntu-vnc-desktop
-    $ make run
-    
-Il comando richiede qualche decina di minuti per completare, potete trovare altro da fare.
+    $ docker build -f Dockerfile.<arch> -t lab-desktop .
 
-Al termine, accedete tramite il browser alla URL `http://localhost:6080`. Dopo poco dovrebbe comparire il desktop della macchina virtuale. Dovreste essere in grado di aprire un terminale e digitare qualche comando. L'utente default si chiama user, con password user.
+Il comando richiede una decina di minuti per completare, potete trovare altro da fare.
+
+Al termine, per verificare il successo dell'operazione, digitate il seguente comando:
+
+    $ docker run -p 6080:80 lab-desktop
+
+Se non produce errori utilizzate il browser per accedere alla URL `http://localhost:6080`: dovrebbe comparire il desktop grafico della macchina virtuale. Potete provare le icone in basso a sinistra. Al termine digitate CTRL-C nel terminale dove avete precedentemente lanciato il comando `docker run`.
 
 Avete terminato il passo preliminare alla creazione del laboratorio.
 
