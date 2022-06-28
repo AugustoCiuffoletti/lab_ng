@@ -2,7 +2,7 @@ version: "2.2"
 
 services:
   desktop:
-    image: mastrogeppetto/nglab-desktop-amd:latest
+    image: mastrogeppetto/nglab-desktop-arm:latest
     hostname: desktop
     privileged: true  # needed to run wireshark
     ports:
@@ -18,7 +18,7 @@ services:
       - SSL_PORT=443
       - RELATIVE_URL_ROOT=approot
   server:
-    image: mastrogeppetto/nglab-server-amd:latest
+    image: mastrogeppetto/nglab-server-arm:latest
     hostname: server
     networks:
       locale:
