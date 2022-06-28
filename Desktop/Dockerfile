@@ -1,4 +1,5 @@
-FROM dorowu/ubuntu-desktop-lxde-vnc:focal
+#FROM dorowu/ubuntu-desktop-lxde-vnc:focal
+FROM lab-desktop
 
 ENV DEBIAN_FRONTEND noninteractive
 # SHELL ["/bin/bash", "-o", "pipefail", "-c"]
