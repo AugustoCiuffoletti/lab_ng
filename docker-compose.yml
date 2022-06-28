@@ -2,7 +2,8 @@ version: "2.2"
 
 services:
   desktop:
-    build: Desktop/
+    image: mastrogeppetto/nglab-desktop-amd:latest
+    hostname: desktop
     privileged: true  # needed to run wireshark
     ports:
       - "6080:80"
@@ -17,8 +18,10 @@ services:
       - SSL_PORT=443
       - RELATIVE_URL_ROOT=approot
   server:
-    build: Server/
-    tty: true        # docker run -t
+#    image: mastrogeppetto/nglab-server-amd:latest
+    image: nglab-server
+    hostname: server
+#    tty: true        # docker run -t
     networks:
       locale:
         ipv4_address: 172.16.1.3
