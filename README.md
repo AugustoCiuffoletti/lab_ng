@@ -92,6 +92,18 @@ In alternativa è possibile accedere alla macchina *server* tramite la macchina 
     
 Ricordate che la password è *user*.
 
+Le macchine virtuali condividono la directory `shared`. Serve per scambiare contenuti in modo molto semplice tra le diverse macchine virtuali.
+
+La directory condivisa `shared` è collocata in posizioni diverse ma ben visibili nelle tre macchine virtuali:
+
+* nella macchina reale (chiamata **host**) è nella directory da cui avete lanciato il comando `docker compose`. Viene creata la prima volta che il comando viene invocato
+* nella macchina **server** è nella home dell'utente `user`
+* nella macchina **desktop** è ben visibile sul desktop
+
+I contenuti delle tre directory sono sempre sincronizzati: modificando uno si modificano anche gli altri. Alcune operazioni, come la rimozione di un file, possono richiedere i privilegi di superutente (`sudo`).
+
+### Svolgimento degli esercizi di laboratorio
+
 I repo degli esercizi sono diversi da quelli attualmente indicati sui lucidi: sono disponibili con prefisso **https://github.com/AugustoCiuffoletti/** a cui aggiungere il nome del repository (ad esempio https://github.com/AugustoCiuffoletti/stella).
 
 Note:
