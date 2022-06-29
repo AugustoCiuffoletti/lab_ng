@@ -1,4 +1,4 @@
-# Guida al prossimo laboratorio
+# Guida al laboratorio virtuale del corso di protocolli e Servizi di Rete
 Per realizzare gli esercizi è necessario installare sulla propria macchina alcune applicazioni. Sono disponibili per tutti i sistemi operativi, largamente utilizzate, ben documentate.
 
 ## Applicazioni da scaricare ed installare sul vostro computer
