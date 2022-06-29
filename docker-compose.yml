@@ -1,13 +1,19 @@
 version: "2.2"
 
+volumes:
+  shared:
+
 services:
   desktop:
     image: mastrogeppetto/nglab-desktop-amd:latest
+    container_name: desktop
     hostname: desktop
     privileged: true  # needed to run wireshark
     ports:
       - "6080:80"
       - "6081:443"
+    volumes:
+      - shared:/home/user/Desktop/shared
     networks:
       locale:
         ipv4_address: 172.16.1.2
@@ -19,7 +25,10 @@ services:
       - RELATIVE_URL_ROOT=approot
   server:
     image: mastrogeppetto/nglab-server-amd:latest
+    container_name: server
     hostname: server
+    volumes:
+      - shared:/home/user/shared
     networks:
       locale:
         ipv4_address: 172.16.1.3
