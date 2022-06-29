@@ -1,5 +1,5 @@
 # Guida al prossimo laboratorio
-Per realizzare gli esercizi è necessario installare sulla propria macchina alcune applicazioni. Sono applicazioni disponibili per tutti i sistemi operativi, largamente utilizzate, ben documentate e facili da disinstallare.
+Per realizzare gli esercizi è necessario installare sulla propria macchina alcune applicazioni. Sono applicazioni disponibili per tutti i sistemi operativi, largamente utilizzate, ben documentate.
 
 ## Applicazioni da scaricare ed installare sul vostro computer
 
@@ -7,83 +7,67 @@ Sono elencate di seguito due applicazioni con alcune brevi note sull'installazio
 
 ### Docker Desktop ([https://www.docker.com/get-started/](https://www.docker.com/get-started/))
 
-E' una applicazizone che ci consente di virtualizzare un host di rete per osservare il funzionamento dei protocolli di comunicazione.
+E' l'applicazizone che ci serve per virtualizzare un host di rete ed osservare il funzionamento dei protocolli di comunicazione.
 
-Al link indicato sopra trovate le istruzioni per l'installazione, diverse per i vari sistemi operativi: installate **Docker Desktop** (non Docker Hub). Al termine dell'installazione dovreste avere tra le aplicazioni Docker Desktop, caratterizzato da una icona che rappresenta una balena su fondo azzurro.
+Al link indicato sopra trovate le istruzioni per l'installazione, diverse per i vari sistemi operativi: installate **Docker Desktop** (non Docker Hub, disponibile alla stessa pagina). Al termine dell'installazione dovreste avere tra le applicazioni Docker Desktop, caratterizzato da una icona che rappresenta una balena su fondo azzurro.
 
-Avviando l'applicazione apparirà una finestra e l'icona nella cosiddetta **task bar**, in alto o in basso sullo schermo, dipendemente dalla configurazione.
+Avviando l'applicazione appariranno una finestra ed una icona nella cosiddetta **task bar**, in alto o in basso sullo schermo, dipendemente dalla configurazione.
 
-Non dovrebbe essere necessario utilizzare l'interfaccia grafica, ma l'applicazione deve essere avviata per poter eseguire gli esercizi che richiedono i server virtualizzati. Quindi la finestra può essere subito chiusa, ma nella task-bar resterà presente l'icona. Per interrompere l'applicazione, nel menu collegato all'icona selezionate **Quit Docker Desktop**. Per accedere nuovamente alla dashboard selezionate **Dashboard**. Per svolgere le attività del corso **non** è necessario nessun tipo di sottoscrizione.
+Non dovrebbe essere necessario utilizzare l'interfaccia grafica, ma l'applicazione deve essere avviata per poter eseguire gli esercizi che richiedono i server virtualizzati. Quindi la finestra può essere subito chiusa, ma nella *task bar* resterà presente l'icona. Per interrompere l'applicazione, nel menu collegato all'icona selezionate **Quit Docker Desktop**. Per accedere nuovamente alla dashboard selezionate **Dashboard**. Per svolgere le attività del corso **non** è necessario nessun tipo di sottoscrizione.
 
-Per le attività di laboratorio utilizzeremo le funzionalità di **Docker Desktop** da linea di comando, utilizzando un emulatore di terminale (*command prompt* per Windows)
+Per le attività di laboratorio utilizzeremo le funzionalità di **Docker Desktop** da linea di comando utilizzando un emulatore di terminale (*command prompt* per Windows)
 
-Al termine delle attività di laboratorio è opportuno interrompere l'applicazione, perchè impegna risorse del PC e può interferire con altre applicazioni.
+Al termine delle attività di laboratorio è opportuno interrompere l'applicazione *Docker Desktop*, perchè impegna risorse del PC e può interferire con altre applicazioni.
 
 Saltuariamente, la dashboard potrà esservi utile per rimuovere **containers** e immagini di disco (**images**), usando il menu a sinistra.
 
 ### Git ([https://git-scm.com/downloads](https://git-scm.com/downloads))
 
-Git disponibile per tutti i principali sistemi operativi. Le sempllici istruzioni di installazione sono indicate al link.
+Git disponibile per tutti i principali sistemi operativi. Le sempllici istruzioni di installazione sono indicate al link indicato sopra.
 
 E' un'applicazione a linea di comando (quindi si usa da emulatore di terminale) per gestire progetti software. E' uno strumento complesso ma prezioso nell'attività di sviluppo. Per l'attività di laboratorio lo utilizzeremo solo per semplificare l'operazione di download del materiale per le esercitazioni.
 
-Dopo averlo installato potete subito provarlo per scaricare in locale il *repository* git che contiene queste istruzioni (e il materiale collegato). Per questo aprite un terminale virtuale e spostatevi in una directory di lavoro. Poi date il comando:
+Dopo averlo installato potete subito provarlo per scaricare in locale il *repository* git che contiene queste istruzioni e il necessario per creare il laboratorio virtuale. Spostatevi in una directory di lavoro. Poi date il comando:
 
     $ git clone https://github.com/AugustoCiuffoletti/lab_ng/
 
-> **Attenzione**: il comando da eseguire **non** comprende il $ iniziale, che viene inserito solo per indicare che si tratta di un comando da terminale da un account utente.
+> **Attenzione**: il comando da eseguire **non** comprende il $ iniziale, che di norma viene inserito per indicare che si tratta di un comando da terminale da un account utente (invece il simbolo **#** indica un comando da superutente).
 
-Il contenuto del repository verrà collocato in una nuova directory `lab-ng`. Ora potete procedere alla costruzione del laboratorio virtuale.
-
-## Costruzione dell'immagine della macchina virtuale con interfaccia grafica
-
-Per costruire il laboratorio è necessario prima procedere alla costruzione di una immagini specifica per la vostra architettura. Il software per la sua costruzione è in repository che dovrete scaricare prima di procedere alla costruzione dell'immagine.
-
-I comandi per realizzare quanto sopra sono riportati sotto. Potete eseguirli nella stessa directory da cui avete eseguito il comando git per l'operazione di clone precedente.
-
-Nel terzo comando, al posto della stringa `<arch>` dovete sostituire una stringa indicativa del vostro sistema:
-
-* amd64: per sistemi Linux, Windows e MacOS con processore AMD
-* arm64: per i nuovi sistemi Mac OS con processore ARM
-
-Prestate attenzione al '.' finale del terxzo comando, che va indicato.
-
-    $ git clone https://github.com/fcwu/docker-ubuntu-vnc-desktop
-    $ cd docker-ubuntu-vnc-desktop
-    $ docker build -f Dockerfile.<arch> -t lab-desktop .
-
-Il comando richiede una decina di minuti per completare, potete trovare altro da fare.
-
-Al termine, per verificare il successo dell'operazione, digitate il seguente comando:
-
-    $ docker run -p 6080:80 lab-desktop
-
-Se non produce errori utilizzate il browser per accedere alla URL `http://localhost:6080`: dovrebbe comparire il desktop grafico della macchina virtuale. Potete provare le icone in basso a sinistra. Al termine digitate CTRL-C nel terminale dove avete precedentemente lanciato il comando `docker run`.
-
-Avete terminato il passo preliminare alla creazione del laboratorio.
+Il contenuto del repository verrà collocato in una nuova directory `lab_ng`. Ora potete procedere alla costruzione del laboratorio virtuale.
 
 ## Costruzione delle due macchine del laboratorio e connessione della rete.
 
-Spostatevi nella direcctory dove avete clonato il repository lab_ng. Quindi:
+Spostatevi nella directory prodotta dal comando precedente, quindi avviate il laboratorio virtuale:
 
-    $ cd ..
     $ cd lab_ng
     $ docker compose up -d
 
-La costruzione del laboratorio è laboriosa e può impiegare molto tempo. Un PC di discreta potenza impiega circa mezz'ora. Al termine dovrebbero comparire sul terminale le seguenti righe:
-    
-    [+] Running 4/4
-     ⠿ Network lab_ng_locale           Created                                 0.3s
-     ⠿ Container lab_ng-server-1       Started                                12.5s
-     ⠿ Container lab_ng-desktop-1      Started                                14.9s
+La prima volta che eseguite il comando verranno scaricate le immagini delle due macchine virtuali: serve un po' di tempo e una rete efficiente. Al termine vengono visualizzatele righe:
 
-Provate nuovamente ad accedere alla macchina virtuale dal browser, aprite un terminale e digitate il comando:
+    Starting server  ... done
+    Starting desktop ... done
+
+Per arrestare le macchine virtuali utilizzate la dashboard di **Docker Desktop**. Selezionate lo schermo dei containers e arrestate i containers premendo il tasto quadrato.
+
+Per riavviarlo utilizzate il comando `docker compose up -d`. 
+
+## Verifica dell'installazione 
+
+Avviate il laboratorio omettendo l'opzione `-d`, cioè `docker compose up`. Il comando non termina, ma verrà visualizzata una riga con il contenuto seguente:
+
+    desktop    | 2022-06-29 07:46:53,819 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+
+Ogni 30 secondi verrà poi visualizzata una riga che attesta il buon funzionamento della macchina desktop:
+
+    desktop    | 127.0.0.1 - - [2022-06-29 07:50:23] "GET /api/health HTTP/1.1" 200 122 0.137451
+    
+E' possibile accedere alla macchina desktop tramite il browser alla URL `http://localhost:6080`. Aprite un terminale (lo trovate nel menu "System tools" collegato all'icona della rondine, in basso a sinistra) e digitate il comando
 
     $ ping 172.16.1.3
 
-Se compare una elenco di righe, una al secondo. L'installazione ha avuto successo.
+Se compare una elenco di righe, al ritmo di una al secondo, anche la macchina virtuale server e la rete virtuale sono funzionali.
 
-Il laboratorio è così disponibile.
+Il laboratorio è disponibile e configurato per svolgere le attività del corso.
 
 ## Analisi del laboratorio
 
