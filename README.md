@@ -13,11 +13,11 @@ Al link indicato sopra trovate le istruzioni per l'installazione, diverse per i 
 
 Avviando l'applicazione appariranno una finestra (la **dashboard**) ed una icona nella cosiddetta **task bar**, in alto o in basso sullo schermo, dipendemente dalla configurazione.
 
-Non dovrebbe essere necessario utilizzare la dashboard, ma l'applicazione deve essere avviata per poter eseguire gli esercizi che richiedono i server virtualizzati. Quindi la finestra può essere subito chiusa, ma nella *task bar* resterà presente l'icona. Per interrompere l'applicazione, nel menu collegato all'icona selezionate **Quit Docker Desktop**. Per accedere nuovamente alla dashboard selezionate **Dashboard**.
+Non dovrebbe essere necessario utilizzare la dashboard, ma l'applicazione deve essere avviata per poter eseguire gli esercizi che richiedono i server virtualizzati. Quindi la finestra può essere subito chiusa, ma nella *task bar* resterà presente l'icona. Per chiudere l'applicazione, nel menu collegato all'icona selezionate **Quit Docker Desktop**. Per accedere nuovamente alla dashboard selezionate **Dashboard**.
 
 Per le attività di laboratorio utilizzeremo le funzionalità di **Docker Desktop** da linea di comando utilizzando un emulatore di terminale (*command prompt* per Windows)
 
-Al termine delle attività di laboratorio è opportuno interrompere l'applicazione *Docker Desktop*, perchè impegna risorse del PC e può interferire con altre applicazioni.
+Al termine delle attività di laboratorio è opportuno chiudere l'applicazione *Docker Desktop*, perchè impegna risorse del PC e può interferire con altre applicazioni.
 
 Saltuariamente, la dashboard potrà esservi utile per rimuovere **containers** e immagini di disco (**images**), usando il menu a sinistra.
 
@@ -78,7 +78,7 @@ Il laboratorio è composto da due macchine virtuali (più propriamente *containe
 
 Per esaminare la struttura del laboratorio utilizziamo la dashboard di "Docker Desktop".
 
-Selezionando **Containers** nel frame di sinistra viene visualizzato un singolo **bundle** contenente i due container, collegati insieme sulla slla stessa rete virtuale. Con un click del tasto destro del mouse sul bundle vengono visualizzati i due *container*. Le icone a destra di ciascuno consentono di eseguire delle operazioni sui container, che per noi sono tre macchine virtuali: accesso, avvio/arresto, ricarica e rimozione, con icone intuitive. Le icone di accesso possono essere due, se esiste anche un accesso web oltre a quello via terminale.
+Selezionando **Containers** nel frame di sinistra viene visualizzato un singolo **bundle** contenente i due container, collegati insieme sulla stessa rete virtuale. Con un click del tasto destro del mouse sul bundle vengono visualizzati i due *container*. Le icone a destra di ciascuno consentono di eseguire delle operazioni sui container, le nostre macchine virtuali: accesso, avvio/arresto, ricarica e rimozione, con icone intuitive. Le icone di accesso possono essere due, se esiste anche un accesso web oltre a quello via terminale.
 
 Ciò accade per la macchina virtuale *desktop* ha un tasto che visualizza il messaggio **Open with browser**. Premendolo si viene riportati sul browser, su cui viene aperta la finestra di accesso alla macchina virtuale come visto sopra. 
 
