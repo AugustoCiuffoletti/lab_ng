@@ -2,13 +2,12 @@ version: "2.2"
 
 services:
   desktop:
-    image: mastrogeppetto/nglab-desktop:stable
+    image: mastrogeppetto/nglab-desktop-multiarch:latest
     container_name: desktop
     hostname: desktop
     privileged: true  # needed to run wireshark
     ports:
       - "6080:80"
-      - "6081:443"
     volumes:
       - ./shared:/home/user/Desktop/shared
     networks:
