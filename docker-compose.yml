@@ -2,7 +2,7 @@ version: "2.2"
 
 services:
   desktop:
-    image: mastrogeppetto/nglab-desktop-multiarch:latest
+    image: mastrogeppetto/nglab-desktop_multiarch:latest
     container_name: desktop
     hostname: desktop
     privileged: true  # needed to run wireshark
@@ -20,7 +20,7 @@ services:
       - SSL_PORT=443
       - RELATIVE_URL_ROOT=approot
   server:
-    image: mastrogeppetto/nglab-server:stable
+    image: mastrogeppetto/nglab-server_multiarch:latest
     container_name: server
     hostname: server
     volumes:
