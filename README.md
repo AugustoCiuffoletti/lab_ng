@@ -9,25 +9,25 @@ Sono elencate di seguito due applicazioni con alcune brevi note sull'installazio
 
 E' l'applicazione che ci serve per virtualizzare una rete di computer ed osservare il funzionamento dei protocolli di comunicazione.
 
-Al link indicato sopra trovate le istruzioni per l'installazione, diverse per i vari sistemi operativi: installate **Docker Desktop** (non Docker Hub, disponibile alla stessa pagina). Per svolgere le attività del corso **non** è necessario nessun tipo di sottoscrizione. Al termine dell'installazione dovreste avere tra le applicazioni Docker Desktop, caratterizzato da una icona con una balena su fondo azzurro.
+Al link indicato sopra trovate le istruzioni per l'installazione, diverse per i vari sistemi operativi: installate **Docker Desktop** (non Docker Hub, disponibile alla stessa pagina). Per svolgere le attività del corso **non** è necessario nessun tipo di sottoscrizione. L'installazione deve avvenire da account **amministratore**.
 
-Avviando l'applicazione appariranno una finestra (la **dashboard**) ed una icona nella cosiddetta **task bar**, in alto o in basso sullo schermo, dipendemente dalla configurazione.
+Al termine dell'installazione dovreste avere tra le applicazioni Docker Desktop, caratterizzato da una icona con una balena su fondo azzurro.
 
-Non dovrebbe essere necessario utilizzare la dashboard, ma l'applicazione deve essere avviata per poter eseguire gli esercizi che richiedono i server virtualizzati. Quindi la finestra può essere subito chiusa, ma nella *task bar* resterà presente l'icona. Per interrompere l'applicazione, nel menu collegato all'icona selezionate **Quit Docker Desktop**. Per accedere nuovamente alla dashboard selezionate **Dashboard**.
-
-Per le attività di laboratorio utilizzeremo le funzionalità di **Docker Desktop** da linea di comando utilizzando un emulatore di terminale (*command prompt* per Windows)
+Avviando l'applicazione appariranno una finestra (la **dashboard**) ed una icona nella cosiddetta **task bar**, in alto o in basso sullo schermo, dipendemente dalla configurazione. Per interrompere l'applicazione, nel menu collegato all'icona selezionate **Quit Docker Desktop**. Per accedere nuovamente alla dashboard selezionate **Dashboard**.
 
 Al termine delle attività di laboratorio è opportuno interrompere l'applicazione *Docker Desktop*, perchè impegna risorse del PC e può interferire con altre applicazioni.
 
-Saltuariamente, la dashboard potrà esservi utile per rimuovere **containers** e immagini di disco (**images**), usando il menu a sinistra.
+Dalla dashboard è possibile gestire **containers** e immagini di disco (**images**). Useremo poche funzioni della dashboard.
 
 ### Git ([https://git-scm.com/downloads](https://git-scm.com/downloads))
 
-Git disponibile per tutti i principali sistemi operativi. Le semplici istruzioni di installazione sono indicate al link indicato sopra.
+Git è disponibile per tutti i principali sistemi operativi. Le istruzioni di installazione sono indicate al link indicato sopra.
 
 E' un'applicazione a linea di comando (quindi si usa da emulatore di terminale) per gestire progetti software. E' uno strumento complesso ma prezioso nell'attività di sviluppo. Per l'attività di laboratorio lo utilizzeremo solo per semplificare l'operazione di download del materiale per le esercitazioni.
 
-Dopo averlo installato potete subito usarlo per scaricare in locale il *repository* git che contiene queste istruzioni e il necessario per creare il laboratorio virtuale. Spostatevi in una directory di lavoro. Poi date il comando:
+### Download del software per il laboratorio virtuale
+
+Dopo aver installato **git** scaricate in locale il *repository* git contiene queste istruzioni e il necessario per creare il laboratorio virtuale. Per farlo date il comando:
 
     $ git clone https://github.com/AugustoCiuffoletti/lab_ng/
 
@@ -40,20 +40,27 @@ Il contenuto del repository verrà collocato in una nuova directory `lab_ng`. Or
 Spostatevi nella directory prodotta dal comando precedente, quindi avviate il laboratorio virtuale:
 
     $ cd lab_ng
-    $ docker compose up -d
+    $ docker compose up
 
 La prima volta che eseguite il comando verranno scaricate le immagini delle due macchine virtuali: serve un po' di tempo e una rete efficiente. Verrà visualizzato l'andamento del download, e al termine le righe:
 
     Starting server  ... done
     Starting desktop ... done
+    Starting lamp ... done
 
-Per arrestare le macchine virtuali utilizzate la dashboard di **Docker Desktop**. Selezionate lo schermo dei containers e premete il tasto quadrato.
+Ciascun container viene generato a partire da *immagini* di dischi virtuali: in pratica la macchina virtuale trova nell'*immagine* il proprio sistema operativo e i dati utente, analogamente ad un normale PC. Il comando visto sopra, in assenza delle *immagini* in locale, le scarica prima da un repository ([https://hub.docker.com/](https://hub.docker.com/)), poi costruisce il container e lo avvia. Se *immagine* e *container* sono già presenti si limita ad avviare il *container*.
 
-Per riavviarlo utilizzate il comando `docker compose up -d`. 
+Per arrestare i *container* che realizzano le macchine virtuali del laboratorio utilizzate la dashboard di **Docker Desktop**. Selezionate lo schermo dei container e premete il tasto quadrato nella riga **lab_ng**. Per riavviarlo utilizzate il tasto triangolare, o in alternativa il comando da terminale `docker compose up -d`.
 
-## Verifica dell'installazione 
+## Verifica dell'installazione e *guided tour*
 
-Avviate il laboratorio omettendo l'opzione `-d`, cioè `docker compose up`. Il comando non termina, ma verrà visualizzata una riga con il contenuto seguente:
+Il laboratorio è composto da tre macchine virtuali realizzate da altrettanti container:
+
+- desktop: un sistema ubuntu con desktop grafico
+- server: un server generico
+- lamp: un server *old style" che integra web server e database MySQL
+
+Per verificare l'installazione avviate il laboratorio dal teminale omettendo l'opzione `-d`, cioè `docker compose up`. Il comando non termina all'avvio dei container,, ma visualizza l'avanzamento dell'avvio delle tre macchine. In particolare la riga conclusiva per l'installazione della macchina desktop è la seguente:
 
     desktop    | 2022-06-29 07:46:53,819 INFO success: novnc entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 
@@ -61,36 +68,31 @@ Ogni 30 secondi verrà poi visualizzata una riga che attesta il buon funzionamen
 
     desktop    | 127.0.0.1 - - [2022-06-29 07:50:23] "GET /api/health HTTP/1.1" 200 122 0.137451
     
-E' possibile accedere alla macchina desktop tramite il browser alla URL `http://localhost:6080`. Sulla macchina desktop, aprite un terminale (lo trovate nel menu "System tools" collegato all'icona della rondine, in basso a sinistra) e digitate il comando
+E' possibile accedere alla macchina desktop tramite il browser del vostro PC alla URL `http://localhost:6080`. Comparirà il desktop di un sistema Linux Ubuntu con interfaccia LXDE.
 
-    $ ping 172.16.1.3
+L'accesso alle altre macchine, *server* e *lamp* avviene tramite un terminale sulla macchina desktop. Per verificare l'accessibilità delle due macchie usate il comando *ping*: aprite un terminale (lo trovate nel menu "System tools" collegato all'icona della rondine, in basso a sinistra) e digitate il comando
 
-Se compare una elenco di righe, al ritmo di una al secondo, anche la macchina virtuale server e la rete virtuale sono funzionali.
+    $ ping server
 
-Il laboratorio è disponibile e configurato per svolgere le attività del corso.
+Se compare una elenco di righe, al ritmo di una al secondo, anche la macchina virtuale server e la rete virtuale sono funzionali. Utilizzate lo stesso comando per verificare la macchina lamp.
+
+Per accedere alla macchina *server* (sarà necessario nelle attività di laboratorio) utilizzate il comando seguente:
+
+    $ ssh server
+
+Per tutte le macchine virtuali il nome utente è *user* con password *user*.Il terminale si collegherà alla macchina *server* e potrete quindi digitare comandi per quella macchina. Con la stessa modalità potete *entrare* nella macchina *lamp*.
+
+Sulle tre macchine, e sul vostro desktop, è presente una directory *shared*. Questa directory è codivisa tra tutte e tre le macchine e con il vostro PC. Questo servirà per scambiare facilmente  file tra le diverse macchine.
 
 ## Analisi del laboratorio
 
-Il laboratorio è composto da due macchine virtuali (più propriamente *container*):
-
-- desktop: un sistema ubuntu con desktop grafico
-- server: un server generico
-
 Per esaminare la struttura del laboratorio utilizziamo la dashboard di "Docker Desktop".
 
-Selezionando **Containers** nel frame di sinistra viene visualizzato un singolo **bundle** contenente i due container, collegati insieme sulla slla stessa rete virtuale. Con un click del tasto destro del mouse sul bundle vengono visualizzati i due *container*. Le icone a destra di ciascuno consentono di eseguire delle operazioni sui container, che per noi sono tre macchine virtuali: accesso, avvio/arresto, ricarica e rimozione, con icone intuitive. Le icone di accesso possono essere due, se esiste anche un accesso web oltre a quello via terminale.
+Selezionando **Containers** nel frame di sinistra viene visualizzato un singolo **bundle** contenente i tre container, collegati insieme sulla sulla stessa rete virtuale. Con un click del tasto destro del mouse sul bundle vengono visualizzati i tre *container*. Le icone a destra di ciascuno consentono di eseguire delle operazioni sui container, che per noi sono tre macchine virtuali: accesso, avvio/arresto, ricarica e rimozione, con icone intuitive. Le icone di accesso possono essere due, se esiste anche un accesso web oltre a quello via terminale.
 
-Ciò accade per la macchina virtuale *desktop* ha un tasto che visualizza il messaggio **Open with browser**. Premendolo si viene riportati sul browser, su cui viene aperta la finestra di accesso alla macchina virtuale come visto sopra. 
+Ciò accade per la macchina virtuale *desktop*, che ha un tasto che visualizza il messaggio **Open with browser**. Premendolo si viene riportati sul browser, su cui viene aperta la finestra di accesso alla macchina virtuale come visto sopra. 
 
-Con l'altro tasto di accesso si accede ad un terminale in esecuzione come root. Per passare all'account utente digitare il comando:
-
-    # su -l user 
-
-In alternativa è possibile accedere alla macchina *server* tramite la macchina *desktop*: su quest'ultima aprite un terminale e digitate il comando:
-
-    $ ssh server
-    
-Ricordate che la password è *user*.
+Con l'altro tasto di accesso si accede ad un terminale in esecuzione come root. E' una opzione che non utilizzeremo, preferendo l'accesso tramite la macchina desktop come visto nel *guided tour*.
 
 Le macchine virtuali condividono la directory `shared`. Serve per scambiare contenuti in modo molto semplice tra le diverse macchine virtuali.
 
