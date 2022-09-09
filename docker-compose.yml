@@ -2,13 +2,12 @@ version: "2.2"
 
 services:
   desktop:
-    image: mastrogeppetto/nglab-desktop:stable
+    image: mastrogeppetto/nglab-desktop:${TAG:-stable}
     container_name: desktop
     hostname: desktop
     privileged: true  # needed to run wireshark
     ports:
       - "6080:80"
-      - "6081:443"
     volumes:
       - ./shared:/home/user/Desktop/shared
     networks:
@@ -21,7 +20,7 @@ services:
       - SSL_PORT=443
       - RELATIVE_URL_ROOT=approot
   server:
-    image: mastrogeppetto/nglab-server:stable
+    image: mastrogeppetto/nglab-server:${TAG:-stable}
     container_name: server
     hostname: server
     volumes:
@@ -30,7 +29,7 @@ services:
       locale:
         ipv4_address: 172.16.1.3
   lamp-server:
-    image: mastrogeppetto/nglab-lamp:stable
+    image: mastrogeppetto/nglab-lamp:${TAG:-stable}
     container_name: lamp
     hostname: lamp
     volumes:
