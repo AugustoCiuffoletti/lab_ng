@@ -2,7 +2,7 @@ version: "2.2"
 
 services:
   desktop:
-    image: mastrogeppetto/nglab-desktop_multiarch:latest
+    image: mastrogeppetto/nglab-desktop:${TAG:-stable}
     container_name: desktop
     hostname: desktop
     privileged: true  # needed to run wireshark
@@ -20,7 +20,7 @@ services:
       - SSL_PORT=443
       - RELATIVE_URL_ROOT=approot
   server:
-    image: mastrogeppetto/nglab-server_multiarch:latest
+    image: mastrogeppetto/nglab-server:${TAG:-stable}
     container_name: server
     hostname: server
     volumes:
@@ -29,7 +29,7 @@ services:
       locale:
         ipv4_address: 172.16.1.3
   lamp-server:
-    image: mastrogeppetto/nglab-lamp:stable
+    image: mastrogeppetto/nglab-lamp:${TAG:-stable}
     container_name: lamp
     hostname: lamp
     volumes:
