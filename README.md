@@ -35,18 +35,22 @@ Il contenuto del repository verrà collocato in una nuova directory `lab_ng`. Or
 
 ## Costruzione delle due macchine del laboratorio e connessione della rete.
 
-Spostatevi nella directory prodotta dal comando precedente, quindi avviate il laboratorio virtuale:
+Spostatevi nella directory prodotta dal comando precedente e create una nuova directory `shared`. Conterrà i file da condividere tra le tre macchine ed il vostro PC.
 
     $ cd lab_ng
+    $ mkdir shared
+
+Quindi avviate il laboratorio virtuale:
+
     $ docker compose up
 
-La prima volta che eseguite il comando verranno scaricate le immagini delle due macchine virtuali: serve un po' di tempo e una rete efficiente. Verrà visualizzato l'andamento del download, e al termine le righe:
+La prima volta che eseguite il comando verranno scaricate le immagini delle due macchine virtuali: serve un po' di tempo ed una rete efficiente. Verrà visualizzato l'andamento del download, e al termine le righe:
 
     Starting server  ... done
     Starting desktop ... done
     Starting lamp ... done
 
-Ciascun container viene generato a partire da *immagini* di dischi virtuali: in pratica la macchina virtuale trova nell'*immagine* il proprio sistema operativo e i dati utente, analogamente ad un normale PC. Il comando visto sopra, in assenza delle *immagini* in locale, le scarica prima da un repository ([https://hub.docker.com/](https://hub.docker.com/)), poi costruisce il container e lo avvia. Se *immagine* e *container* sono già presenti si limita ad avviare il *container*.
+Ciascun container viene generato a partire da *immagini* di dischi virtuali: in pratica la macchina virtuale trova nell'*immagine* il proprio sistema operativo e i dati utente, analogamente ad un normale PC. Il comando visto sopra, in assenza delle *immagini* in locale, le scarica prima da un repository remoto ([https://hub.docker.com/](https://hub.docker.com/)), poi costruisce il container e lo avvia. Se *immagine* e *container* sono già presenti si limita ad avviare il *container*.
 
 Per arrestare i *container* che realizzano le macchine virtuali del laboratorio utilizzate la dashboard di **Docker Desktop**. Selezionate lo schermo dei container e premete il tasto quadrato nella riga **lab_ng**. Per riavviarlo utilizzate il tasto triangolare, o in alternativa il comando da terminale `docker compose up -d`.
 
