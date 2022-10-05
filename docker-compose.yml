@@ -2,18 +2,16 @@ version: "2.2"
 
 services:
   desktop:
-    image: mastrogeppetto/nglab-desktop:stable
-    container_name: desktop
+    image: mastrogeppetto/nglab-desktop_multiarch:latest
+    container_name: desktop_dhcp
     hostname: desktop
     privileged: true  # needed to run wireshark
     ports:
       - "6080:80"
-      - "6081:443"
     volumes:
       - ./shared:/home/user/Desktop/shared
     networks:
       locale:
-        ipv4_address: 172.16.1.2
     environment:
       - USER=user
       - PASSWORD=user
@@ -21,27 +19,34 @@ services:
       - SSL_PORT=443
       - RELATIVE_URL_ROOT=approot
   server:
-    image: mastrogeppetto/nglab-server:stable
-    container_name: server
+    image: mastrogeppetto/nglab-server_multiarch:latest
+    container_name: server_dhcp
     hostname: server
     volumes:
       - ./shared:/home/user/shared
     networks:
       locale:
-        ipv4_address: 172.16.1.3
+        ipv4_address: 172.16.2.3
   lamp-server:
     image: mastrogeppetto/nglab-lamp:stable
-    container_name: lamp
+    container_name: lamp_dhcp
     hostname: lamp
     volumes:
       - ./shared:/home/user/shared
     tty: true        # docker run -t
     networks:
       locale:
-        ipv4_address: 172.16.1.4
+        ipv4_address: 172.16.2.4
+  dhcp-server:
+    image: networkboot/dhcpd
+    volumes:
+      - ./data:/data
+    networks:
+      locale:
+        ipv4_address: 172.16.2.5
 networks:
   locale:
     driver: bridge
     ipam:
       config:
-      - subnet: 172.16.1.0/24
+      - subnet: 172.16.2.0/24
