@@ -4,16 +4,16 @@
 # authoring-byte-order entry is generated, DO NOT DELETE
 authoring-byte-order little-endian;
 
-lease 172.16.2.10 {
-  starts 5 2022/09/23 08:44:52;
-  ends 6 2022/09/24 08:44:52;
-  tstp 6 2022/09/24 08:44:52;
-  cltt 5 2022/09/23 08:44:52;
+lease 172.16.2.11 {
+  starts 2 2022/10/11 15:10:27;
+  ends 3 2022/10/12 15:10:27;
+  tstp 3 2022/10/12 15:10:27;
+  cltt 2 2022/10/11 15:10:27;
   binding state active;
   next binding state free;
   rewind binding state free;
   hardware ethernet 02:42:ac:10:02:02;
   client-hostname "desktop";
 }
-server-duid "\000\001\000\001*\300-e\002B\254\020\002\005";
+server-duid "\000\001\000\001*\326\333T\002B\254\020\002\005";
 

@@ -18,6 +18,9 @@ services:
       - ALSADEV=hw:2,0
       - SSL_PORT=443
       - RELATIVE_URL_ROOT=approot
+    networks:
+      locale:
+        ipv4_address: 172.16.2.2
   server:
     image: mastrogeppetto/nglab-server_multiarch:latest
     container_name: server_dhcp
@@ -27,23 +30,32 @@ services:
     networks:
       locale:
         ipv4_address: 172.16.2.3
-  lamp-server:
-    image: mastrogeppetto/nglab-lamp:stable
-    container_name: lamp_dhcp
-    hostname: lamp
-    volumes:
-      - ./shared:/home/user/shared
-    tty: true        # docker run -t
-    networks:
-      locale:
-        ipv4_address: 172.16.2.4
   dhcp-server:
     image: networkboot/dhcpd
     volumes:
       - ./data:/data
     networks:
       locale:
+        ipv4_address: 172.16.2.4
+  webserver:
+    image: httpd:2.4-alpine
+    container_name: webserver
+    hostname: webserver
+    volumes:
+      - ./public:/usr/local/apache2/htdocs/
+    networks:
+      locale:
         ipv4_address: 172.16.2.5
+  mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: mysql
+    hostname: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    networks:
+      locale:
+        ipv4_address: 172.16.2.6
 networks:
   locale:
     driver: bridge
